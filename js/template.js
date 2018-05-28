@@ -91,7 +91,7 @@
 	Template.prototype.itemCounter = function (activeTodos) {
 		var plural = activeTodos === 1 ? '' : 's';
 
-		return '<strong>' + activeTodos + '</strong> item' + plural + ' left';
+		return '<strong>' + activeTodos + '</strong> todo' + plural;
 	};
 
 	/**
@@ -102,7 +102,7 @@
 	 */
 	Template.prototype.clearCompletedButton = function (completedTodos) {
 		if (completedTodos > 0) {
-			return 'Clear completed';
+			return 'Nettoyer todo compléter';
 		} else {
 			return '';
 		}

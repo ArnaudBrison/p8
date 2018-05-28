@@ -14,35 +14,44 @@
 		self.view = view;
 
 		self.view.bind('newTodo', function (title) {
+			title = 'lol';
 			self.addItem(title);
+			console.log('ajout todo');
 		});
 
 		self.view.bind('itemEdit', function (item) {
 			self.editItem(item.id);
+			console.log('changement texte todo');
 		});
 
 		self.view.bind('itemEditDone', function (item) {
 			self.editItemSave(item.id, item.title);
+			console.log('changement texte todo fini');
 		});
 
 		self.view.bind('itemEditCancel', function (item) {
 			self.editItemCancel(item.id);
+			console.log('changement texte todo annuler');
 		});
 
 		self.view.bind('itemRemove', function (item) {
 			self.removeItem(item.id);
+			console.log('suppression todo');
 		});
 
 		self.view.bind('itemToggle', function (item) {
 			self.toggleComplete(item.id, item.completed);
+			console.log('todo completer');
 		});
 
 		self.view.bind('removeCompleted', function () {
 			self.removeCompletedItems();
+			console.log('todo completer supprimer');
 		});
 
 		self.view.bind('toggleAll', function (status) {
 			self.toggleAll(status.completed);
+			console.log('todo tous completer');
 		});
 	}
 
@@ -66,6 +75,7 @@
 		self.model.read(function (data) {
 			self.view.render('showEntries', data);
 		});
+		console.log('montrer toute les todo');
 	};
 
 	/**
@@ -76,6 +86,7 @@
 		self.model.read({ completed: false }, function (data) {
 			self.view.render('showEntries', data);
 		});
+		console.log('montrer les actif');
 	};
 
 	/**
@@ -86,13 +97,14 @@
 		self.model.read({ completed: true }, function (data) {
 			self.view.render('showEntries', data);
 		});
+		console.log('montrer les completer');
 	};
 
 	/**
 	 * An event to fire whenever you want to add an item. Simply pass in the event
 	 * object and it'll handle the DOM insertion and saving of the new item.
 	 */
-	Controller.prototype.adddItem = function (title) {
+	Controller.prototype.addItem = function (title) {
 		var self = this;
 
 		if (title.trim() === '') {
